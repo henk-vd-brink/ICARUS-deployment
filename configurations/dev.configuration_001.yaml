@@ -7,3 +7,7 @@ modules:
     settings: 
       image: icarus-edge-detector
       createOptions: '{"HostConfig":{"PortBindings":{"5000/tcp":[{"HostPort":"5000"}]}}}'
+    environment:
+      - REMOTE_IP_ADDRESS=1334.22..3
+      - REMOTE_FILE_SENDER_PORT=8443
+      - META_DATA_SENDER=iot_edge
