@@ -42,7 +42,7 @@ jobs:
           inlineScript: |
             chmod +x $GITHUB_WORKSPACE/scripts/*.sh
 
-            $GITHUB_WORKSPACE/scripts/build_template.sh \
+            $GITHUB_WORKSPACE/scripts/build_edge_template.sh \
               ${{ env.ICARUS_EDGE_DETECTOR_IMAGE }} \
               ${{ env.ICARUS_EDGE_DETECTOR_VERSION }} \
               ${{ env.TARGET_CONDITION }}
