@@ -1,0 +1,9 @@
+
+
+
+modules:
+  icarus-edge-detector:
+    type: docker
+    settings: 
+      image: icarus-edge-detector
+      createOptions: '{"HostConfig":{"PortBindings":{"5000/tcp":[{"HostPort":"5000"}]}}}'
