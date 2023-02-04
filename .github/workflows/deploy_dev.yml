@@ -48,5 +48,5 @@ jobs:
               ${{ env.TARGET_CONDITION }}
 
             $GITHUB_WORKSPACE/scripts/deploy_template_to_iotedge.sh \
-              ${{ env.TARGET_IOT_HUB }} \
+              "${{ env.TARGET_IOT_HUB }}" \
               "${{ env.TARGET_CONDITION }}"

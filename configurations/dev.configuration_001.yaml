@@ -1,5 +1,11 @@
+version: 1.0
+target_condition: tags.environment='dev'
 
-
+container_registries:
+  cricarusdev:
+    address: icarus.azurecr.io
+    username: $CRICARUSDEV_USERNAME
+    password: $CRICARUSDEV_PASSWORD
 
 modules:
   icarus-edge-detector:
