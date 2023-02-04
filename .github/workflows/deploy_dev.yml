@@ -47,6 +47,6 @@ jobs:
               ${{ env.ICARUS_EDGE_DETECTOR_VERSION }} \
               ${{ env.TARGET_CONDITION }}
 
-            $GITHUB_WORKSPACE/scripts/deploy_to_azure_iotedge.sh \
+            $GITHUB_WORKSPACE/scripts/deploy_template_to_iotedge.sh \
               ${{ env.TARGET_IOT_HUB }} \
               ${{ env.TARGET_CONDITION }}
