@@ -1,0 +1,52 @@
+name: Deploy icarus-edge-detector
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    environment: icarus
+    env: 
+      CRICARUSDEV_URL: ${{ secrets.CRICARUSDEV_URL }}
+      CRICARUSDEV_USERNAME: ${{ secrets.CRICARUSDEV_USERNAME }}
+      CRICARUSDEV_PASSWORD: ${{ secrets.CRICARUSDEV_PASSWORD }}
+      ICARUS_EDGE_DETECTOR_IMAGE: icarus-edge-detector
+      ICARUS_EDGE_DETECTOR_VERSION: main-010ec9b5625f24d37c57a690034cf83c1880059e
+      TARGET_IOT_HUB: iot-icarus-dev
+      TARGET_CONDITION: tags.environment='dev'
+      
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        name: Checkout 
+        uses: actions/checkout@v3
+      - 
+        name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF_NAME}-${GITHUB_RUN_ID})"
+        id: extract_branch
+      -
+        name: 'Az CLI login'
+        uses: azure/actions/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - 
+        name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+
+            $GITHUB_WORKSPACE/scripts/build_template.sh \
+              ${{ env.ICARUS_EDGE_DETECTOR_IMAGE }} \
+              ${{ env.ICARUS_EDGE_DETECTOR_VERSION }} \
+              ${{ env.TARGET_CONDITION }}
+
+            $GITHUB_WORKSPACE/scripts/deploy_to_azure_iotedge.sh \
+              ${{ env.TARGET_IOT_HUB }} \
+              ${{ env.TARGET_CONDITION }}

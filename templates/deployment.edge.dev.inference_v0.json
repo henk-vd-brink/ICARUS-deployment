@@ -1,0 +1,97 @@
+{
+    "id": "dev5",
+    "schemaVersion": null,
+    "labels": {},
+    "content": {
+        "modulesContent": {
+            "$edgeAgent": {
+                "properties.desired": {
+                    "schemaVersion": "1.1",
+                    "runtime": {
+                        "type": "docker",
+                        "settings": {
+                            "registryCredentials": {
+                                "cricarusdev": {
+                                    "address": "{{ CRICARUSDEV_URL }}",
+                                    "username": "{{ CRICARUSDEV_USERNAME }}",
+                                    "password": "{{ CRICARUSDEV_PASSWORD }}"
+                                }
+                            }
+                        }
+                    },
+                    "systemModules": {
+                        "edgeAgent": {
+                            "settings": {
+                                "image": "mcr.microsoft.com/azureiotedge-agent:1.4"
+                            },
+                            "type": "docker"
+                        },
+                        "edgeHub": {
+                            "restartPolicy": "always",
+                            "settings": {
+                                "image": "mcr.microsoft.com/azureiotedge-hub:1.4",
+                                "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"443/tcp\":[{\"HostPort\":\"443\"}],\"5671/tcp\":[{\"HostPort\":\"5671\"}],\"8883/tcp\":[{\"HostPort\":\"8883\"}]}}}"
+                            },
+                            "status": "running",
+                            "type": "docker"
+                        }
+                    },
+                    "modules": {
+                        "icarus-edge-detector": {
+                            "env": {
+                                "REMOTE_IP_ADDRESS": {
+                                    "value": "192.168.178.47"
+                                },
+                                "REMOTE_FILE_SENDER_PORT": {
+                                    "value": "8443"
+                                },
+                                "META_DATA_SENDER": {
+                                    "value": "iot_edge"
+                                }
+                            },
+                            "restartPolicy": "always",
+                            "settings": {
+                                "image": "{{ CRICARUSDEV_URL }}/{{ ICARUS_EDGE_DETECTOR_IMAGE }}:{{ ICARUS_EDGE_DETECTOR_VERSION }}",
+                                "createOptions": "{\"Entrypoint\":[\"/home/docker_user/scripts/start.dev.sh\"],\"HostConfig\":{\"Binds\":[\"/home/jetson/repos/ICARUS-python-detector/assets:/home/docker_user/assets\",\"/tmp/argus_socket:/tmp/argus_socket\"]}}"
+                            },
+                            "status": "running",
+                            "type": "docker"
+                        }
+                    }
+                }
+            },
+            "$edgeHub": {
+                "properties.desired": {
+                    "schemaVersion": "1.1",
+                    "storeAndForwardConfiguration": {
+                        "timeToLiveSecs": 7200
+                    },
+                    "routes": {}
+                }
+            }
+        }
+    },
+    "targetCondition": "{{ TARGET_CONDITION }}",
+    "createdTimeUtc": "2023-02-03T20:28:56.984384Z",
+    "lastUpdatedTimeUtc": "2023-02-03T20:28:56.984384Z",
+    "priority": 10,
+    "systemMetrics": {
+        "results": {
+            "targetedCount": 1,
+            "appliedCount": 1,
+            "reportedSuccessfulCount": 0,
+            "reportedFailedCount": 1
+        },
+        "queries": {
+            "targetedCount": "select deviceId from devices where capabilities.iotEdge = true and {{ TARGET_CONDITION}}",
+            "appliedCount": "select deviceId from devices.modules where moduleId = '$edgeAgent' and configurations.[[dev5]].status = 'Applied'",
+            "reportedSuccessfulCount": "select deviceId from devices.modules where moduleId = '$edgeAgent' and configurations.[[dev5]].status = 'Applied' and properties.desired.$version = properties.reported.lastDesiredVersion and properties.reported.lastDesiredStatus.code = 200",
+            "reportedFailedCount": "select deviceId from devices.modules where moduleId = '$edgeAgent' and configurations.[[dev5]].status = 'Applied' and properties.desired.$version = properties.reported.lastDesiredVersion and properties.reported.lastDesiredStatus.code != 200"
+        }
+    },
+    "metrics": {
+        "results": {},
+        "queries": {}
+    },
+    "etag": "MQ=="
+}
