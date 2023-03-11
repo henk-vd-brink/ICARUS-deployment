@@ -24,6 +24,7 @@ def build_module_dict(module_settings):
 
     module["env"] = environment
     module["settings"]["image"] = module_settings["settings"]["image"]
+    module["settings"]["createOptions"] = module_settings["settings"]["create_options"]
 
     if "createOptions" in module_settings["settings"]:
         module["settings"]["createOptions"] = module_settings["settings"][

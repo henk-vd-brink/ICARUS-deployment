@@ -50,13 +50,13 @@ python3 src/generate_template.py \
     --configuration-file ./tmp/configuration.tmp.yaml \
     --template-file ./tmp/template.tmp.json
 
-eval $(parse_yaml ./tmp/configuration.tmp.yaml)
+# eval $(parse_yaml ./tmp/configuration.tmp.yaml)
 
-az config set extension.use_dynamic_install=yes_without_prompt
+# az config set extension.use_dynamic_install=yes_without_prompt
 
-az iot edge deployment create \
-    -d ${DEPLOYMENT_VERSION} \
-    -n iot-icarus-dev \
-    --content "./tmp/deployment.tmp.json" \
-    --target-condition "$target_condition" \
-    --priority 100
+# az iot edge deployment create \
+#     -d ${DEPLOYMENT_VERSION} \
+#     -n iot-icarus-dev \
+#     --content "./tmp/deployment.tmp.json" \
+#     --target-condition "$target_condition" \
+#     --priority 100
