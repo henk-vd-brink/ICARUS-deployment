@@ -13,10 +13,6 @@ jobs:
       CRICARUSDEV_URL: ${{ secrets.CRICARUSDEV_URL }}
       CRICARUSDEV_USERNAME: ${{ secrets.CRICARUSDEV_USERNAME }}
       CRICARUSDEV_PASSWORD: ${{ secrets.CRICARUSDEV_PASSWORD }}
-      ICARUS_EDGE_DETECTOR_IMAGE: icarus-edge-detector
-      ICARUS_EDGE_DETECTOR_VERSION: main-010ec9b5625f24d37c57a690034cf83c1880059e
-      TARGET_IOT_HUB: iot-icarus-dev
-      TARGET_CONDITION: tags.environment='dev'
       
     runs-on: ubuntu-latest
 

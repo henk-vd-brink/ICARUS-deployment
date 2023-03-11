@@ -2,6 +2,8 @@
 
 DEPLOYMENT_VERSION=$(date +%Y%m%d%H%M%S)
 
+mkdir ./tmp
+
 function parse_yaml {
    local prefix=$2
    local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
@@ -32,26 +34,26 @@ if [ -z "$configuration_file" ] || [ -z "$template_file" ]; then
     exit 1
 fi
 
-cat $configuration_file | envsubst > /tmp/configuration.tmp.yaml
-cat $template_file > /tmp/template.tmp.json
+cat $configuration_file | envsubst > ./tmp/configuration.tmp.yaml
+cat $template_file > ./tmp/template.tmp.json
 
 pip3 install -r scripts/requirements.cd.txt
 
 python3 src/generate_template.py \
-    --configuration-file /tmp/configuration.tmp.yaml \
-    --template-file /tmp/template.tmp.json
+    --configuration-file ./tmp/configuration.tmp.yaml \
+    --template-file ./tmp/template.tmp.json
 
 TARGET_IOT_HUB=$1
 TARGET_CONDITION=$2
 
-eval $(parse_yaml /tmp/configuration.tmp.yaml)
+eval $(parse_yaml ./tmp/configuration.tmp.yaml)
 
 az config set extension.use_dynamic_install=yes_without_prompt
 
 az iot edge deployment create \
     -d ${DEPLOYMENT_VERSION} \
     -n iot-icarus-dev \
-    --content "/tmp/deployment.tmp.json" \
+    --content "./tmp/deployment.tmp.json" \
     --target-condition "$target_condition" \
     --priority 100 \
     --verbose \

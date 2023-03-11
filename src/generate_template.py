@@ -62,7 +62,7 @@ def parse_configuration(configuration):
 
 
 def build_deployment_manifest_from_dict(deployment_manifest_dict):
-    with open("/tmp/deployment.tmp.json", mode="w", encoding="utf-8") as f:
+    with open("./tmp/deployment.tmp.json", mode="w", encoding="utf-8") as f:
         f.write(deployment_manifest_dict)
 
 
