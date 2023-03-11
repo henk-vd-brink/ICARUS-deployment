@@ -43,10 +43,7 @@ jobs:
             chmod +x $GITHUB_WORKSPACE/scripts/*.sh
 
             $GITHUB_WORKSPACE/scripts/build_edge_template.sh \
-              ${{ env.ICARUS_EDGE_DETECTOR_IMAGE }} \
-              ${{ env.ICARUS_EDGE_DETECTOR_VERSION }} \
-              ${{ env.TARGET_CONDITION }}
-
-            $GITHUB_WORKSPACE/scripts/deploy_template_to_iotedge.sh \
-              "${{ env.TARGET_IOT_HUB }}" \
-              "${{ env.TARGET_CONDITION }}"
+              ./build_and_deploy/edge_template.json \
+                -c configurationms/dev.configuration_001.yaml \
+                -t templates/deployment.edge.inference_v0.json
+                

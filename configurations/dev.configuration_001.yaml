@@ -1,19 +1,18 @@
 version: 1.0
-target_condition: tags.environment='dev'
+target_condition: deviceId='icarus-jn-002'
 
 container_registries:
   cricarusdev:
     address: icarus.azurecr.io
-    username: $CRICARUSDEV_USERNAME
-    password: $CRICARUSDEV_PASSWORD
+    username: ${CRICARUSDEV_USERNAME}
+    password: ${CRICARUSDEV_PASSWORD}
 
 modules:
   icarus-edge-detector:
     type: docker
     settings: 
-      image: icarus-edge-detector
-      createOptions: '{"HostConfig":{"PortBindings":{"5000/tcp":[{"HostPort":"5000"}]}}}'
+      image: main-010ec9b5625f24d37c57a690034cf83c1880059e
     environment:
-      - REMOTE_IP_ADDRESS=1334.22..3
+      - REMOTE_IP_ADDRESS=10.8.0.2
       - REMOTE_FILE_SENDER_PORT=8443
-      - META_DATA_SENDER=iot_edge
+      - META_DATA_SENDER=rabbitmq

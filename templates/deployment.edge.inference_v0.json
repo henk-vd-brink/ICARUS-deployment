@@ -10,13 +10,7 @@
                     "runtime": {
                         "type": "docker",
                         "settings": {
-                            "registryCredentials": {
-                                "cricarusdev": {
-                                    "address": "{{ CRICARUSDEV_URL }}",
-                                    "username": "{{ CRICARUSDEV_USERNAME }}",
-                                    "password": "{{ CRICARUSDEV_PASSWORD }}"
-                                }
-                            }
+                            "registryCredentials": {}
                         }
                     },
                     "systemModules": {
@@ -36,28 +30,7 @@
                             "type": "docker"
                         }
                     },
-                    "modules": {
-                        "icarus-edge-detector": {
-                            "env": {
-                                "REMOTE_IP_ADDRESS": {
-                                    "value": "192.168.178.47"
-                                },
-                                "REMOTE_FILE_SENDER_PORT": {
-                                    "value": "8443"
-                                },
-                                "META_DATA_SENDER": {
-                                    "value": "iot_edge"
-                                }
-                            },
-                            "restartPolicy": "always",
-                            "settings": {
-                                "image": "{{ CRICARUSDEV_URL }}/{{ ICARUS_EDGE_DETECTOR_IMAGE }}:{{ ICARUS_EDGE_DETECTOR_VERSION }}",
-                                "createOptions": "{\"Entrypoint\":[\"/home/docker_user/scripts/start.dev.sh\"],\"HostConfig\":{\"Binds\":[\"/home/jetson/repos/ICARUS-python-detector/assets:/home/docker_user/assets\",\"/tmp/argus_socket:/tmp/argus_socket\"]}}"
-                            },
-                            "status": "running",
-                            "type": "docker"
-                        }
-                    }
+                    "modules": {}
                 }
             },
             "$edgeHub": {

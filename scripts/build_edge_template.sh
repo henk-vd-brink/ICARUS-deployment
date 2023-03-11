@@ -1,9 +1,10 @@
 #!/bin/bash
 
-ICARUS_EDGE_DETECTOR_IMAGE=$1
-ICARUS_EDGE_DETECTOR_VERSION=$2
-TARGET_CONFITION=$3
+CONFIGURATION_FILE=$1
+TEMPLATE_FILE=$2
 
 pip3 install -r scripts/requirements.cd.txt
 
-python3 src/generate_template.py
+python3 src/generate_template.py \
+    --configuration-file ${CONFIGURATION_FILE} \
+    --template-file ${TEMPLATE_FILE}
