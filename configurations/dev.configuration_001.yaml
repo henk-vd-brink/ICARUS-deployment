@@ -11,7 +11,7 @@ modules:
   icarus-edge-detector:
     type: docker
     settings: 
-      image: main-010ec9b5625f24d37c57a690034cf83c1880059e
+      image: icarus.azurecr.io/icarus-edge-detector:main-010ec9b5625f24d37c57a690034cf83c1880059e
     environment:
       - REMOTE_IP_ADDRESS=10.8.0.2
       - REMOTE_FILE_SENDER_PORT=8443
