@@ -81,13 +81,7 @@ if __name__ == "__main__":
     loaded_template = load_template_from_path(template_file_path)
     loaded_configuration = load_configuration_from_path(configuration_file_path)
 
-    print(loaded_configuration)
-    print(loaded_template)
-    print(os.environ)
-
     loaded_configuration = {**loaded_configuration, **os.environ}
-
-    print(loaded_configuration)
 
     modules = {}
     for module_name, module_settings in loaded_configuration["modules"].items():

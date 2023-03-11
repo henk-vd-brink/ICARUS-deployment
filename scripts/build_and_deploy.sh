@@ -2,6 +2,9 @@
 
 DEPLOYMENT_VERSION=$(date +%Y%m%d%H%M%S)
 
+apt-get update \
+    && apt-get install -y envsubst
+
 mkdir ./tmp
 
 function parse_yaml {
