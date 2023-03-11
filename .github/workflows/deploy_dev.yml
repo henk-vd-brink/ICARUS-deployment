@@ -41,6 +41,9 @@ jobs:
             export CRICARUSDEV_USERNAME=$CRICARUSDEV_USERNAME
             export CRICARUSDEV_PASSWORD=$CRICARUSDEV_PASSWORD
 
+            echo "CRICARUSDEV_USERNAME: $CRICARUSDEV_USERNAME"
+            echo "CRICARUSDEV_PASSWORD: $CRICARUSDEV_PASSWORD"
+
             ./scripts/build_and_deploy.sh \
                 -c configurations/dev.configuration_001.yaml \
                 -t templates/deployment.edge.inference_v0.json

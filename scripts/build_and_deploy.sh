@@ -50,9 +50,6 @@ python3 src/generate_template.py \
     --configuration-file ./tmp/configuration.tmp.yaml \
     --template-file ./tmp/template.tmp.json
 
-TARGET_IOT_HUB=$1
-TARGET_CONDITION=$2
-
 eval $(parse_yaml ./tmp/configuration.tmp.yaml)
 
 az config set extension.use_dynamic_install=yes_without_prompt
