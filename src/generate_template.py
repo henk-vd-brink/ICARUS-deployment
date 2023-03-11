@@ -103,6 +103,4 @@ if __name__ == "__main__":
         "modules"
     ] = modules
 
-    print(loaded_configuration)
-
     build_deployment_manifest_from_dict(json.dumps(loaded_template))

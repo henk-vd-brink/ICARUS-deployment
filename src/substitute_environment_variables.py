@@ -13,6 +13,7 @@ def load_template_from_path(path: str):
 
 def build_deployment_manifest_from_path(template, path):
     content = template.render(os.environ)
+    print(content)
 
     with open(path, mode="w", encoding="utf-8") as f:
         f.write(content)
