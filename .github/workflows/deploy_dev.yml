@@ -42,5 +42,5 @@ jobs:
             export CRICARUSDEV_PASSWORD=$CRICARUSDEV_PASSWORD
 
             $GITHUB_WORKSPACE/scripts/build_and_deploy.sh \
-                -c configurationms/dev.configuration_001.yaml \
+                -c configurations/dev.configuration_001.yaml \
                 -t templates/deployment.edge.inference_v0.json
