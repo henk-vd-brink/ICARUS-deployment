@@ -3,7 +3,7 @@ target_condition: deviceId='icarus-jn-002'
 
 container_registries:
   cricarusdev:
-    address: icarus.azurecr.io
+    address: cricarusdev.azurecr.io
     username: {{ CRICARUSDEV_USERNAME }}
     password: {{ CRICARUSDEV_PASSWORD }}
 
