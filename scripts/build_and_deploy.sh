@@ -2,9 +2,6 @@
 
 DEPLOYMENT_VERSION=$(date +%Y%m%d%H%M%S)
 
-apt-get update \
-    && apt-get install -y envsubst
-
 mkdir ./tmp
 
 function parse_yaml {
@@ -37,13 +34,18 @@ if [ -z "$configuration_file" ] || [ -z "$template_file" ]; then
     exit 1
 fi
 
-cat $configuration_file | envsubst > ./tmp/configuration.tmp.yaml
-cat $template_file > ./tmp/template.tmp.json
-
-ls ./tmp
-
 pip3 install -r scripts/requirements.cd.txt
 
+python3 src/substitute_environment_variables.py \
+    --input-file $configuration_file \
+    --output-file ./tmp/configuration.tmp.yaml
+
+python3 src/substitute_environment_variables.py \
+    --input-file $template_file \
+    --output-file ./tmp/template.tmp.json
+
+
+# Generate deployment.json
 python3 src/generate_template.py \
     --configuration-file ./tmp/configuration.tmp.yaml \
     --template-file ./tmp/template.tmp.json
