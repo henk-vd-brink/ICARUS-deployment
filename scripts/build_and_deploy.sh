@@ -55,6 +55,4 @@ az iot edge deployment create \
     -n iot-icarus-dev \
     --content "./tmp/deployment.tmp.json" \
     --target-condition "$target_condition" \
-    --priority 100 \
-    --verbose \
-    --debug
+    --priority 100
