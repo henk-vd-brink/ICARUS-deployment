@@ -12,6 +12,7 @@ def build_module_dict(module_settings):
     module["status"] = "running"
     module["restartPolicy"] = "always"
     module["settings"] = dict()
+    module["imagePullPolicy"] = "on-create"
 
     environment = {}
     for environment_variable in module_settings["environment"]:
