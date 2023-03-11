@@ -37,6 +37,8 @@ fi
 cat $configuration_file | envsubst > ./tmp/configuration.tmp.yaml
 cat $template_file > ./tmp/template.tmp.json
 
+ls ./tmp
+
 pip3 install -r scripts/requirements.cd.txt
 
 python3 src/generate_template.py \
