@@ -12,7 +12,7 @@ modules:
     type: docker
     settings: 
       image: cricarusdev.azurecr.io/icarus-edge-detector:main-010ec9b5625f24d37c57a690034cf83c1880059e
-      create_options: "{\"Entrypoint\":\"/home/docker_user/scripts/start.dev.sh\"}"
+      create_options: "{\"Entrypoint\":[\"/home/docker_user/scripts/start.dev.sh\"]}"
     environment:
       - REMOTE_IP_ADDRESS=10.8.0.2
       - REMOTE_FILE_SENDER_PORT=8443
