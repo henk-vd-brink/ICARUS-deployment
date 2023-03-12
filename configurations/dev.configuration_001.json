@@ -25,7 +25,7 @@
         }
       },
       "environment": [
-        "REMOTE_IP_ADDRESS=10.8.0.21",
+        "REMOTE_IP_ADDRESS=10.8.0.2",
         "REMOTE_FILE_SENDER_PORT=8443",
         "REMOTE_META_DATA_SENDER_PORT=5672",
         "REMOTE_META_DATA_SENDER_USERNAME=guest",
