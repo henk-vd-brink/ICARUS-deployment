@@ -33,7 +33,6 @@ python3 src/generate_template.py \
     --configuration-file ./tmp/configuration.tmp.json \
     --template-file ./tmp/template.tmp.json
 
-target_condition=$(grep "target_condition" ./tmp/configuration.tmp.json | cut -d ":" -f2-)
 
 az config set extension.use_dynamic_install=yes_without_prompt
 
@@ -41,5 +40,7 @@ az iot edge deployment create \
     -d ${DEPLOYMENT_VERSION} \
     -n iot-icarus-dev \
     --content "./tmp/deployment.tmp.json" \
-    --target-condition "$target_condition" \
-    --priority 100
+    --target-condition "deviceId='icarus-jn-002'" \
+    --priority 100 \
+    --verbose \
+    --debug
