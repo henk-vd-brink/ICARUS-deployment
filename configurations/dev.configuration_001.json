@@ -12,11 +12,20 @@
     "icarus-edge-detector": {
       "type": "docker",
       "settings": {
-        "image": "cricarusdev.azurecr.io/icarus-edge-detector:main-93beb8d2399a735472f8b4923eb11a7927283de4",
-        "create_options": "{\"Entrypoint\":[\"/home/docker_user/scripts/start.dev.sh\"],\"HostConfig\":{\"Binds\":[\"/tmp/argus_socket:/tmp/argus_socket\"]}}"
+        "image": "cricarusdev.azurecr.io/icarus-edge-detector:main-a50d69ccb144aec4858679fa01476a27acd67bb0",
+        "create_options": {
+          "Entrypoint": [
+            "/home/docker_user/scripts/start.dev.sh"
+          ],
+          "HostConfig": {
+            "Binds": [
+              "/tmp/argus_socket:/tmp/argus_socket"
+            ]
+          }
+        }
       },
       "environment": [
-        "REMOTE_IP_ADDRESS=10.8.0.2",
+        "REMOTE_IP_ADDRESS=10.8.0.21",
         "REMOTE_FILE_SENDER_PORT=8443",
         "REMOTE_META_DATA_SENDER_PORT=5672",
         "REMOTE_META_DATA_SENDER_USERNAME=guest",
