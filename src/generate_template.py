@@ -2,7 +2,6 @@ import sys
 import getopt
 import os
 import json
-import yaml
 
 
 def build_module_dict(module_settings):
@@ -52,7 +51,7 @@ def load_template_from_path(path: str):
 
 def load_configuration_from_path(path: str):
     with open(path, mode="r", encoding="utf-8") as f:
-        return yaml.safe_load(f.read())
+        return json.loads(f.read())
 
 
 def parse_configuration(configuration):

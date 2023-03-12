@@ -2,24 +2,7 @@
 
 DEPLOYMENT_VERSION=$(date +%Y%m%d%H%M%S)
 
-mkdir ./tmp
-
-function parse_yaml {
-   local prefix=$2
-   local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
-   sed -ne "s|^\($s\):|\1|" \
-        -e "s|^\($s\)\($w\)$s:$s[\"']\(.*\)[\"']$s\$|\1$fs\2$fs\3|p" \
-        -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p"  $1 |
-   awk -F$fs '{
-      indent = length($1)/2;
-      vname[indent] = $2;
-      for (i in vname) {if (i > indent) {delete vname[i]}}
-      if (length($3) > 0) {
-         vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
-         printf("%s%s%s=\"%s\"\n", "'$prefix'",vn, $2, $3);
-      }
-   }'
-}
+mkdir -p ./tmp
 
 while getopts c:t: flag
 do
@@ -38,7 +21,7 @@ pip3 install -r scripts/requirements.cd.txt
 
 python3 src/substitute_environment_variables.py \
     --input-file $configuration_file \
-    --output-file ./tmp/configuration.tmp.yaml
+    --output-file ./tmp/configuration.tmp.json
 
 python3 src/substitute_environment_variables.py \
     --input-file $template_file \
@@ -47,10 +30,10 @@ python3 src/substitute_environment_variables.py \
 
 # Generate deployment.json
 python3 src/generate_template.py \
-    --configuration-file ./tmp/configuration.tmp.yaml \
+    --configuration-file ./tmp/configuration.tmp.json \
     --template-file ./tmp/template.tmp.json
 
-eval $(parse_yaml ./tmp/configuration.tmp.yaml)
+target_condition=$(grep "target_condition" ./tmp/configuration.tmp.json | cut -d ":" -f2-)
 
 az config set extension.use_dynamic_install=yes_without_prompt
 
