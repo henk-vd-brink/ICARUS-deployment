@@ -42,5 +42,5 @@ jobs:
             export CRICARUSDEV_PASSWORD=$CRICARUSDEV_PASSWORD
 
             ./scripts/build_and_deploy.sh \
-                -c configurations/dev.configuration_001.yaml \
+                -c configurations/dev.configuration_001.json \
                 -t templates/deployment.edge.inference_v0.json
