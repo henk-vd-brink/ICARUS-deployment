@@ -24,14 +24,56 @@
           }
         }
       },
-      "environment": [
-        "REMOTE_IP_ADDRESS=10.8.0.2",
-        "REMOTE_FILE_SENDER_PORT=8443",
-        "REMOTE_META_DATA_SENDER_PORT=5672",
-        "REMOTE_META_DATA_SENDER_USERNAME=guest",
-        "REMOTE_META_DATA_SENDER_PASSWORD=guest",
-        "META_DATA_SENDER=iot_edge"
-      ]
+      "environment": {
+        "REMOTE_IP_ADDRESS": "10.8.0.2",
+        "REMOTE_FILE_SENDER_PORT": "8443",
+        "REMOTE_META_DATA_SENDER_PORT": "5672",
+        "REMOTE_META_DATA_SENDER_USERNAME": "guest",
+        "REMOTE_META_DATA_SENDER_PASSWORD": "guest",
+        "META_DATA_SENDER": "iot_edge"
+      }
+    },
+    "icarus-edge-blobstorage": {
+      "type": "docker",
+      "settings": {
+        "image": "mcr.microsoft.com/azure-blob-storage:latest",
+        "create_options": {
+          "HostConfig": {
+            "Binds": [
+              "/home/icarusadmin/data:/BlobRoot"
+            ],
+            "PortBindings": {
+              "11002/tcp": [
+                {
+                  "HostPort": "11002"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "properties.desired": {
+        "deviceAutoDeleteProperties": {
+          "deleteOn": true,
+          "deleteAfterMinutes": 600,
+          "retainWhileUploading": true
+        },
+        "deviceToCloudUploadProperties": {
+          "uploadOn": true,
+          "uploadOrder": "OldestFirst",
+          "cloudStorageConnectionString": "{{ STORAGE_ACCOUNT_CONNECTION_STRING }}",
+          "storageContainersForUpload": {
+            "icarus-dev-local": {
+              "target": "icarus-dev"
+            }
+          },
+          "deleteAfterUpload": true
+        }
+      },
+      "environment": {
+        "STORAGE_ACCOUNT_NAME": "icarusstorage",
+        "STORAGE_ACCOUNT_KEY": "W1FjOpxK+PzW3t2DTRFgYrCfJ9bgM/BAyIm5mqVGVql7PSr2eGFIRj3DvGuB9DhLjrsDlKozB3rAEnmRxPFdFA=="
+      }
     }
   }
 }

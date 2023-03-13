@@ -14,13 +14,8 @@ def build_module_dict(module_settings):
     module["imagePullPolicy"] = "on-create"
 
     environment = {}
-    for environment_variable in module_settings["environment"]:
-        (
-            environment_variable_name,
-            environment_variable_value,
-        ) = environment_variable.split("=")
-
-        environment[environment_variable_name] = {"value": environment_variable_value}
+    for env_name, env_value in module_settings["environment"].items():
+        environment[env_name] = {"value": env_value}
 
     module["env"] = environment
     module["settings"]["image"] = module_settings["settings"]["image"]
@@ -105,5 +100,14 @@ if __name__ == "__main__":
     loaded_template["content"]["modulesContent"]["$edgeAgent"]["properties.desired"][
         "modules"
     ] = modules
+
+    for module_name, module_settings in loaded_configuration["modules"].items():
+        properties_desired = module_settings.get("properties.desired")
+        if properties_desired is None:
+            continue
+
+        loaded_template["content"]["modulesContent"][module_name] = {
+            "properties.desired": module_settings.get("properties.desired")
+        }
 
     build_deployment_manifest_from_dict(json.dumps(loaded_template))
