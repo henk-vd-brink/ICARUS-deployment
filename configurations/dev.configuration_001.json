@@ -63,7 +63,7 @@
           "uploadOrder": "OldestFirst",
           "cloudStorageConnectionString": "{{ STORAGE_ACCOUNT_CONNECTION_STRING }}",
           "storageContainersForUpload": {
-            "icarus-dev-local": {
+            "icarusstorage": {
               "target": "icarus-dev"
             }
           },
