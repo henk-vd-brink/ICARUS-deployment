@@ -73,6 +73,9 @@
           },
           "deleteAfterUpload": true
         }
+      },
+      "environment": {
+        "PLACE_HOLDER": "place_holder"
       }
     }
   }
