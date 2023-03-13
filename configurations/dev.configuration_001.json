@@ -40,7 +40,7 @@
         "create_options": {
           "HostConfig": {
             "Binds": [
-              "/home/icarusadmin/data:/BlobRoot"
+              "/home/icarusadmin/data:/blobroot"
             ],
             "PortBindings": {
               "11002/tcp": [
