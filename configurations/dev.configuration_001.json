@@ -38,6 +38,10 @@
       "settings": {
         "image": "mcr.microsoft.com/azure-blob-storage:latest",
         "create_options": {
+          "Env": [
+            "LOCAL_STORAGE_ACCOUNT_NAME=icaruslocaldev1",
+            "LOCAL_STORAGE_ACCOUNT_KEY=DNFSxS+W83hewfgPYHVxAmmxCRSG23d5G2/pyYdMotsNWdICtz5PMiRmRAztvjkdyoczfkl0+Bsr+AStgXzQzQ=="
+          ],
           "HostConfig": {
             "Binds": [
               "/home/icarusadmin/data:/blobroot"
@@ -69,10 +73,6 @@
           },
           "deleteAfterUpload": true
         }
-      },
-      "environment": {
-        "STORAGE_ACCOUNT_NAME": "icaruslocaldev1",
-        "STORAGE_ACCOUNT_KEY": "DNFSxS+W83hewfgPYHVxAmmxCRSG23d5G2/pyYdMotsNWdICtz5PMiRmRAztvjkdyoczfkl0+Bsr+AStgXzQzQ=="
       }
     }
   }
