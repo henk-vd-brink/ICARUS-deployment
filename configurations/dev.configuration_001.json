@@ -63,7 +63,7 @@
           "uploadOrder": "OldestFirst",
           "cloudStorageConnectionString": "{{ STORAGE_ACCOUNT_CONNECTION_STRING }}",
           "storageContainersForUpload": {
-            "icarusstorage": {
+            "icarus-dev": {
               "target": "icarus-dev"
             }
           },
@@ -71,7 +71,7 @@
         }
       },
       "environment": {
-        "STORAGE_ACCOUNT_NAME": "icarusstorage",
+        "STORAGE_ACCOUNT_NAME": "icarus-dev",
         "STORAGE_ACCOUNT_KEY": "W1FjOpxK+PzW3t2DTRFgYrCfJ9bgM/BAyIm5mqVGVql7PSr2eGFIRj3DvGuB9DhLjrsDlKozB3rAEnmRxPFdFA=="
       }
     }
