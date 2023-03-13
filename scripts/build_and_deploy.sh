@@ -41,6 +41,4 @@ az iot edge deployment create \
     -n iot-icarus-dev \
     --content "./tmp/deployment.tmp.json" \
     --target-condition "deviceId='icarus-jn-002'" \
-    --priority 100 \
-    --verbose \
-    --debug
+    --priority 100

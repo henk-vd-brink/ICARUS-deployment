@@ -13,6 +13,7 @@ jobs:
       CRICARUSDEV_URL: ${{ secrets.CRICARUSDEV_URL }}
       CRICARUSDEV_USERNAME: ${{ secrets.CRICARUSDEV_USERNAME }}
       CRICARUSDEV_PASSWORD: ${{ secrets.CRICARUSDEV_PASSWORD }}
+      STORAGE_ACCOUNT_CONNECTION_STRING: ${{ secrets.STORAGE_ACCOUNT_CONNECTION_STRING }}
       
     runs-on: ubuntu-latest
 
@@ -40,6 +41,7 @@ jobs:
 
             export CRICARUSDEV_USERNAME=$CRICARUSDEV_USERNAME
             export CRICARUSDEV_PASSWORD=$CRICARUSDEV_PASSWORD
+            export STORAGE_ACCOUNT_CONNECTION_STRING=$STORAGE_ACCOUNT_CONNECTION_STRING
 
             ./scripts/build_and_deploy.sh \
                 -c configurations/dev.configuration_001.json \
