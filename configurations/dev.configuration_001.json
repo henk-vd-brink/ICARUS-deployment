@@ -40,7 +40,7 @@
         "create_options": {
           "Env": [
             "LOCAL_STORAGE_ACCOUNT_NAME=icaruslocaldev1",
-            "LOCAL_STORAGE_ACCOUNT_KEY=DNFSxS+W83hewfgPYHVxAmmxCRSG23d5G2/pyYdMotsNWdICtz5PMiRmRAztvjkdyoczfkl0+Bsr+AStgXzQzQ=="
+            "LOCAL_STORAGE_ACCOUNT_KEY=dB405HwkWI95hOi/OkHMlfQ5Vd55OPxz5lRT+APbagdfmpITuGFdxCO4vv9TToqJ3/g/cOjrHZ/pPsfwUqqdwQ=="
           ],
           "HostConfig": {
             "Binds": [
