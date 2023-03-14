@@ -12,7 +12,7 @@
     "icarus-edge-detector": {
       "type": "docker",
       "settings": {
-        "image": "cricarusdev.azurecr.io/icarus-edge-detector:main-010ec9b5625f24d37c57a690034cf83c1880059e",
+        "image": "cricarusdev.azurecr.io/icarus-edge-detector:main-0c04636ea49c81f5ad409fdb534713fdf6cff827",
         "create_options": {
           "Entrypoint": [
             "/home/docker_user/scripts/start.dev.sh"
