@@ -12,7 +12,7 @@
     "icarus-edge-detector": {
       "type": "docker",
       "settings": {
-        "image": "cricarusdev.azurecr.io/icarus-edge-detector:main-6b36ccee291cf7e072a293ea082509c3e8cb3d3f",
+        "image": "cricarusdev.azurecr.io/icarus-edge-detector:main-3e4d0b6dbf28e8fb6deca7dfb90e7217aed0e8db",
         "create_options": {
           "Entrypoint": [
             "/home/docker_user/scripts/start.dev.sh"
@@ -25,12 +25,11 @@
         }
       },
       "environment": {
-        "REMOTE_IP_ADDRESS": "10.8.0.2",
-        "REMOTE_FILE_SENDER_PORT": "8443",
-        "REMOTE_META_DATA_SENDER_PORT": "5672",
-        "REMOTE_META_DATA_SENDER_USERNAME": "guest",
-        "REMOTE_META_DATA_SENDER_PASSWORD": "guest",
-        "META_DATA_SENDER": "iot_edge"
+        "META_DATA_SENDER": "iot_edge",
+        "FILE_SENDER": "blob",
+        "REMOTE_FILE_SENDER_IP_ADDRESS": "icarus-edge-blobstorage",
+        "REMOTE_FILE_SENDER_PORT": "11002",
+        "REMOTE_FILE_SENDER_ACCOUNT_KEY": "dB405HwkWI95hOi/OkHMlfQ5Vd55OPxz5lRT+APbagdfmpITuGFdxCO4vv9TToqJ3/g/cOjrHZ/pPsfwUqqdwQ=="
       }
     },
     "icarus-edge-blobstorage": {
@@ -75,7 +74,7 @@
         }
       },
       "environment": {
-        "PLACE_HOLDER": "place_holder"
+        "PLACE_HOLDER": "PLACE_HOLDER"
       }
     }
   }
